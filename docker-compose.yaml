@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+
+  database:
+    image: mysql:5.7
+    command: mysqld --sql_mode=""
+    ports:
+      - "3308:3306"
+    environment:
+      - MYSQL_DATABASE={DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD={DB_PASSWORD}
+    volumes:
+      - ".docker/data:/var/lib/mysql"
+    networks:
+      - default_network
+    
+networks:
+  default_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.110.239.0/24  
