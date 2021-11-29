@@ -10,7 +10,7 @@ async function main() {
   const dotenv = require("dotenv");
   dotenv.config();
   const connection = bootstrap();
-  
+
   const productModule = new ProductModule({
     controller: ProductsController,
     service: ProductsService,
@@ -18,7 +18,8 @@ async function main() {
     connection,
     repository: ProductsRepository
   });
-
+  // To Do: add pipe layer to validate requests send validated data to controllers
+  // return error and validation messages and controller content returned 
   const http = new Http();
 
   http.get("/", (req, res) => {
