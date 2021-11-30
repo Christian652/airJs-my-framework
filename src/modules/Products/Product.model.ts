@@ -1,4 +1,4 @@
-import BaseModel from "../Common/BaseModel";
+import BaseModel from "../../core/common/BaseModel";
 
 export default class Product extends BaseModel {
   constructor(

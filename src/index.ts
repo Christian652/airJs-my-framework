@@ -5,6 +5,7 @@ import ProductModule from "./modules/Products/Product.module";
 import Product from "./modules/Products/Product.model";
 import ProductsRepository from "./modules/Products/Products.repository";
 import Http from "./core/http/Http";
+import routes from "./routes";
 
 async function main() {
   const dotenv = require("dotenv");
@@ -21,28 +22,8 @@ async function main() {
   // To Do: add pipe layer to validate requests send validated data to controllers
   // return error and validation messages and controller content returned 
   const http = new Http();
-
-  http.get("/", (req, res) => {
-    res.end("Bem Vindo")
-  })
-
-  http.post("/", (req, res) => {
-    res.end("Bem Vindo no post")
-  })
-
-  http.put("/", (req, res) => {
-    res.end("Bem Vindo no put")
-  })
-
-  http.patch("/", (req, res) => {
-    res.end("Bem Vindo no patch")
-  })
-
-  http.delete("/", (req, res) => {
-    res.end("Bem Vindo no delete")
-  })
+  http.importEndpoints(routes.endpoints);
   
-  http.listen(8000);
-
+  http.listen(process.env.APP_PORT || 3000);
 }
 main();

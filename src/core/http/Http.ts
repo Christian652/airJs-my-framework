@@ -4,10 +4,16 @@ import { Method } from "./enums/methods.enum";
 export default class Http {
   protected server;
   protected http = require("http");
-  protected endpoints: Endpoint[];
+  public endpoints: Endpoint[] = [];
 
   private endpointFactory(method, path, callback) {
-    this.endpoints.push(new Endpoint(method, path, callback));
+    this.endpoints.push(new Endpoint(path, method, callback));
+  }
+
+  importEndpoints(endpoints: Endpoint[]) {
+    endpoints.forEach(endpoint => {
+      this.endpoints.push(endpoint);
+    })
   }
 
   get(path, callback) {
@@ -34,8 +40,6 @@ export default class Http {
     // To Refacturing , have more than should be responsable 
     this.server = this.http.createServer((req, res) => {
       const foundedEndpoint = this.endpoints.find(endpoint => {
-        console.log(endpoint.method, req.method);
-        
         if (
           endpoint.path.toUpperCase() == req.url.toUpperCase() &&
           endpoint.method.toUpperCase() == req.method.toUpperCase()
@@ -43,7 +47,7 @@ export default class Http {
           return endpoint;
         }
       })
-
+      
       if (foundedEndpoint) {
         foundedEndpoint.callback(req, res);
       } else {

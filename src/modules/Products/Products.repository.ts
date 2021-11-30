@@ -1,4 +1,4 @@
-import ICrud from "../Common/interfaces/ICrud";
+import ICrud from "../../core/common/interfaces/ICrud";
 import Product from "./Product.model";
 
 export default class ProductsRepository implements ICrud {

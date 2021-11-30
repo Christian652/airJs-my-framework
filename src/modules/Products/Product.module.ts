@@ -1,4 +1,4 @@
-import BaseModule from "../Common/BaseModule";
+import BaseModule from "../../core/common/BaseModule";
 
 export default class ProductModule extends BaseModule {
   constructor({

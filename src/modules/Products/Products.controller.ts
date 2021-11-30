@@ -1,6 +1,6 @@
-import HttpException from "../Common/exceptions/HttpException";
-import NotFoundException from "../Common/exceptions/NotFoundException";
-import IResourceController from "../Common/interfaces/IResourceController";
+import HttpException from "../../core/common/exceptions/HttpException";
+import NotFoundException from "../../core/common/exceptions/NotFoundException";
+import IResourceController from "../../core/common/interfaces/IResourceController";
 import ProductsService from "./Products.service";
 
 export default class ProductsController implements IResourceController {
