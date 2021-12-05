@@ -22,6 +22,9 @@ async function main() {
   // To Do: add pipe layer to validate requests send validated data to controllers
   // return error and validation messages and controller content returned 
   const http = new Http();
+  http.get("/", (req, res) => {
+    res.end("Welcome to AIR.js")
+  })
   http.importEndpoints(routes.endpoints);
   
   http.listen(process.env.APP_PORT || 3000);
